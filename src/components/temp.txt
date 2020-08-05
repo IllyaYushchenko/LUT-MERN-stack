@@ -1,0 +1,18 @@
+ componentDidMount() {
+    const sendGetRequest = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/users/');
+        console.log (response.data);
+         if (response.data.length > 0) {
+          this.setState({
+            users: response.data.map(user => user.username),
+            username: response.data[0].username
+          })
+        }
+      } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
+  }
+sendGetRequest();
+}
